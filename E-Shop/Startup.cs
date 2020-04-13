@@ -27,8 +27,11 @@ namespace E_Shop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(/*options => options.SignIn.RequireConfirmedAccount = true*/).AddEntityFrameworkStores<ShopDbContext>().AddDefaultUI();
-           
+            //services.AddDefaultIdentity<IdentityUser>(/*options => options.SignIn.RequireConfirmedAccount = true*/).AddEntityFrameworkStores<ShopDbContext>().AddDefaultUI();
+            services.AddDefaultIdentity<IdentityUser>()
+                 .AddRoles<IdentityRole>()
+                 .AddRoleManager<RoleManager<IdentityRole>>()
+                 .AddEntityFrameworkStores<ShopDbContext>().AddDefaultUI();
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             //services.AddMvc();

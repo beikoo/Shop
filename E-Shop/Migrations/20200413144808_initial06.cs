@@ -1,82 +1,49 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Shop.Migrations
 {
-    public partial class initial : Migration
+    public partial class initial06 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Category",
-                columns: table => new
-                {
-                    CategoryID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(nullable: true),
-                    CategoryDescription = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Category", x => x.CategoryID);
-                });
+            migrationBuilder.DeleteData(
+                table: "Car",
+                keyColumn: "CarID",
+                keyValue: 1);
 
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(nullable: true),
-                    NormalizedUserName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    NormalizedEmail = table.Column<string>(nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    Password = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    IsAdmin = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
+            migrationBuilder.DeleteData(
+                table: "Car",
+                keyColumn: "CarID",
+                keyValue: 2);
 
-            migrationBuilder.CreateTable(
-                name: "Car",
-                columns: table => new
-                {
-                    CarID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Brand = table.Column<string>(nullable: true),
-                    Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
-                    Image = table.Column<string>(nullable: true),
-                    ThumbNail = table.Column<string>(nullable: true),
-                    IsOnSale = table.Column<bool>(nullable: false),
-                    IsOnStock = table.Column<bool>(nullable: false),
-                    CategoryID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Car", x => x.CarID);
-                    table.ForeignKey(
-                        name: "FK_Car_Category_CategoryID",
-                        column: x => x.CategoryID,
-                        principalTable: "Category",
-                        principalColumn: "CategoryID",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.DeleteData(
+                table: "Car",
+                keyColumn: "CarID",
+                keyValue: 3);
 
+            migrationBuilder.DeleteData(
+                table: "Car",
+                keyColumn: "CarID",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Category",
+                keyColumn: "CategoryID",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Category",
+                keyColumn: "CategoryID",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Category",
+                keyColumn: "CategoryID",
+                keyValue: 2);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.InsertData(
                 table: "Category",
                 columns: new[] { "CategoryID", "CategoryDescription", "CategoryName" },
@@ -102,23 +69,6 @@ namespace E_Shop.Migrations
                     { 4, "BMW", 1, "The BMW i8 is a plug-in hybrid sports car developed by BMW. The i8 is part of BMW's electric fleet Project i being marketed as a new sub-brand, BMW i. The 2015 model year BMW i8 has a 7.1 kWh lithium-ion battery pack that delivers an all-electric range of 37 km (23 mi) under the New European Driving Cycle. Under the United States Environmental Protection Agency cycle, the range in EV mode is 24 km (15 mi) with a small amount of gasoline consumption. Its design is heavily influenced by the BMW M1 Homage concept car, which in turn pays homage to BMW's last production mid-engined sports car prior to the i8: the BMW M1. BMW will cease the production of the BMW i8 in April 2020", "\\Images\\i8.jpg", true, true, "I8", 99999m, "\\Images\\i8.jpg" },
                     { 1, "Audi", 2, "25 years of RS, 25 years of high-performance station wagons from Audi: With the new Audi RS 6 Audi Sport is ushering in a new chapter in the history of the high-performance Avant. Even more power combined with increased efficiency thanks to mild hybrid system turn the RS 6 Avant into the perfect companion for any purpose. The new Audi RS 6 Avant will go on sale in dealerships in Germany and other European countries by the end of 2019.Combined fuel consumption in l / 100 km: 117(20.1) – 115(20.5),Combined CO2 emissions in g / km: 268(431.3) – 263(423.3); Information on fuel consumption and CO2 emissions aswell as efficiency classes in ranges depending on the tires and alloy wheel rims used", "\\Images\\rs6.jpg", true, true, "Rs6", 59999m, "\\Images\\rs6.jpg" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Car_CategoryID",
-                table: "Car",
-                column: "CategoryID");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Car");
-
-            migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Category");
         }
     }
 }

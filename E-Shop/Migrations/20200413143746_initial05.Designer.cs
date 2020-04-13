@@ -10,14 +10,14 @@ using Models;
 namespace E_Shop.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20200413135041_initial")]
-    partial class initial
+    [Migration("20200413143746_initial05")]
+    partial class initial05
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -193,6 +193,7 @@ namespace E_Shop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
