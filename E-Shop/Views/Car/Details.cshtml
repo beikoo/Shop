@@ -1,0 +1,15 @@
+﻿@model Car
+<div class="table">
+    <div class="caption">
+        <div class="d-flex justify-content-center">
+            <a href="@Model.Image"><img class="thumbnail" src="@Model.Image" alt="image for car" style="width:70%;" /></a>
+        </div>
+        <div class="float-right">
+            <h2>
+                Price:@Model.Price.ToString("c")
+            </h2>
+        </div>
+        <h2 class="text-left">@Model.Brand @Model.Model</h2>
+        <div class="text-center"><p class="text-justify">@Model.Description</p></div>
+    </div>
+</div>

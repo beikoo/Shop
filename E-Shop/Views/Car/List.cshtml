@@ -1,0 +1,20 @@
+﻿@model CarListViewModel;
+<h1>@Model.CurrentCategory</h1>
+@foreach (var car in Model.Cars)
+{
+    <div class="table">
+        <div class="caption">
+            <div class="float-right">
+                <h2>
+                    @car.Price.ToString("c")
+                </h2>
+                <a asp-controller="Car" asp-action="Details" asp-route-id="@car.CarID" class="btn btn-danger">Details</a>
+            </div>
+            <h2 class="text-center">@car.Brand @car.Model</h2>
+            <div class="d-flex justify-content-center">
+                <a href="@car.Image"><img class="thumbnail" src="@car.Image" alt="image for car" style="width:350px;" /></a>
+            </div>
+            <div class="text-center" style="height:100px; overflow:hidden;"><p class="text-justify">@car.Description</p></div>
+        </div>
+    </div>
+}
